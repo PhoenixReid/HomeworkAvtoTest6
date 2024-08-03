@@ -36,7 +36,7 @@ public class MoneyTransferTest {
 
 
     @Test
-    void TheTranslationValidSummaTest() {
+    void theTranslationValidSummaTest() {
         int amount = DataHelper.randomSumma(firstBalance);
         new ToppingUpTheCard().moneyTransfer(secondCard, amount);
         int actualFirstBalance = ChoosingBankCards.getCardBalance(firstCard.getId());
