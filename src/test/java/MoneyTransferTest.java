@@ -1,15 +1,12 @@
-import Page.Auth;
-import Page.ChoosingBankCards;
-import Page.ToppingUpTheCard;
-import Page.VerifyCode;
+
+import page.*;
 import com.codeborne.selenide.Condition;
 
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import Data.DataHelper;
-import org.junit.jupiter.api.TestInfo;
+import data.*;
 
 import java.time.Duration;
 
@@ -25,13 +22,13 @@ public class MoneyTransferTest {
     @BeforeEach
     void setUp() {
         open("http://localhost:9999/");
-        var authInfo = new DataHelper().getAuthInfo();
+        var authInfo = new data.DataHelper().getAuthInfo();
         var auth = new Auth().verifyLogin(authInfo);
         var codeInfo = new DataHelper().getCodeInfo();
         var authCode = new VerifyCode().verifyCode(codeInfo);
 
         firstCard = new DataHelper().getFirstCard();
-        firstBalance = ChoosingBankCards.getCardBalance(firstCard.getId());
+        firstBalance = page.ChoosingBankCards.getCardBalance(firstCard.getId());
         secondCard = new DataHelper().getSecondCard();
         secondBalance = ChoosingBankCards.getCardBalance(secondCard.getId());
         ChoosingBankCards.choosingCard(firstCard);
@@ -49,10 +46,10 @@ public class MoneyTransferTest {
     }
 
     @Test
-    void TheTranslationNoValidSummaTest() {
+    void theTranslationNoValidSummaTest() {
         int amount = DataHelper.noValidRandomSumma(firstBalance);
         new ToppingUpTheCard().moneyTransfer(secondCard, amount);
-        $("[data-test-id=\"error-notification\"]").shouldBe(Condition.visible, Duration.ofSeconds(5));
+        ToppingUpTheCard.visibleError();
     }
-    
+
 }

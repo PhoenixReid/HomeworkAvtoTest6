@@ -1,9 +1,10 @@
-package Page;
+package page;
 
-import Data.DataHelper;
+import com.codeborne.selenide.Condition;
+import data.DataHelper;
 import com.codeborne.selenide.SelenideElement;
 
-import java.util.Random;
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -15,9 +16,13 @@ public class ToppingUpTheCard {
 
     public void moneyTransfer(DataHelper.CardInfo card , int amount){
 
-       summa.setValue(String.valueOf(amount));
+        summa.setValue(String.valueOf(amount));
         from.setValue(card.getNumber());
         button.click();
 
+    }
+
+    public static void visibleError(){
+        $("[data-test-id=\"error-notification\"").shouldBe(Condition.visible,Duration.ofSeconds(5));
     }
 }

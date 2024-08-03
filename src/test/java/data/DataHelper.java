@@ -1,8 +1,7 @@
 
-package Data;
+package data;
 import com.codeborne.selenide.ElementsCollection;
 import lombok.Value;
-import lombok.val;
 
 import java.util.Random;
 
@@ -56,6 +55,7 @@ public class DataHelper {
         String number;
         String id;
     }
+
 
 }
 
