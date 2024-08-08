@@ -14,15 +14,16 @@ public class ToppingUpTheCard {
     private  final SelenideElement to = $("[data-test-id=\"to\"] input");
     private final SelenideElement button = $("[data-test-id=\"action-transfer\"]");
 
-    public void moneyTransfer(DataHelper.CardInfo card , int amount){
+    public ChoosingBankCards moneyTransfer(DataHelper.CardInfo card , int amount){
 
         summa.setValue(String.valueOf(amount));
         from.setValue(card.getNumber());
         button.click();
+        return new ChoosingBankCards();
 
     }
 
-    public static void visibleError(){
+    public void visibleError(){
         $("[data-test-id=\"error-notification\"").shouldBe(Condition.visible,Duration.ofSeconds(5));
     }
 }

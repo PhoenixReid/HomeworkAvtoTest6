@@ -16,13 +16,13 @@ public class ChoosingBankCards {
     private static String balanceFinish = " р.";
 
 
-    public static  int getCardBalance(String id) {
+    public int getCardBalance(String id) {
         String text = $(by("data-test-id", id)).getText();
         int balance = extractBalance(text);
         return balance;
     }
 
-    private static  int extractBalance(String text) {
+    private int extractBalance(String text) {
 
         val start = text.indexOf(balanceStart);
         val finish = text.indexOf(balanceFinish);

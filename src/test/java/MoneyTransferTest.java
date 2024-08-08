@@ -1,4 +1,6 @@
 
+
+
 import page.*;
 import com.codeborne.selenide.Condition;
 
@@ -28,9 +30,9 @@ public class MoneyTransferTest {
         var authCode = new VerifyCode().verifyCode(codeInfo);
 
         firstCard = new DataHelper().getFirstCard();
-        firstBalance = page.ChoosingBankCards.getCardBalance(firstCard.getId());
+        firstBalance = new ChoosingBankCards().getCardBalance(firstCard.getId());
         secondCard = new DataHelper().getSecondCard();
-        secondBalance = ChoosingBankCards.getCardBalance(secondCard.getId());
+        secondBalance = new ChoosingBankCards().getCardBalance(secondCard.getId());
         ChoosingBankCards.choosingCard(firstCard);
     }
 
@@ -39,9 +41,9 @@ public class MoneyTransferTest {
     void theTranslationValidSummaTest() {
         int amount = DataHelper.randomSumma(firstBalance);
         new ToppingUpTheCard().moneyTransfer(secondCard, amount);
-        int actualFirstBalance = ChoosingBankCards.getCardBalance(firstCard.getId());
+        int actualFirstBalance = new ChoosingBankCards().getCardBalance(firstCard.getId());
         Assertions.assertEquals(firstBalance + amount, actualFirstBalance);
-        int actualSecondBalance = ChoosingBankCards.getCardBalance(secondCard.getId());
+        int actualSecondBalance =new ChoosingBankCards().getCardBalance(secondCard.getId());
         Assertions.assertEquals(secondBalance - amount, actualSecondBalance);
     }
 
@@ -49,7 +51,7 @@ public class MoneyTransferTest {
     void theTranslationNoValidSummaTest() {
         int amount = DataHelper.noValidRandomSumma(firstBalance);
         new ToppingUpTheCard().moneyTransfer(secondCard, amount);
-        ToppingUpTheCard.visibleError();
+        new ToppingUpTheCard().visibleError();
     }
 
 }
