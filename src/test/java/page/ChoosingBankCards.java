@@ -31,7 +31,7 @@ public class ChoosingBankCards {
     }
 
     //
-    public  static void choosingCard(DataHelper.CardInfo card){
+    public  void choosingCard(DataHelper.CardInfo card){
         $(by("data-test-id", card.getId())).$("[data-test-id=\"action-deposit\"]").click();
         $("[data-test-id=\"dashboard\"]").shouldBe(Condition.visible, Duration.ofSeconds(5));
     }

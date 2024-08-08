@@ -33,7 +33,7 @@ public class MoneyTransferTest {
         firstBalance = new ChoosingBankCards().getCardBalance(firstCard.getId());
         secondCard = new DataHelper().getSecondCard();
         secondBalance = new ChoosingBankCards().getCardBalance(secondCard.getId());
-        ChoosingBankCards.choosingCard(firstCard);
+        new ChoosingBankCards().choosingCard(firstCard);
     }
 
 
